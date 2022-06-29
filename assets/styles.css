@@ -141,6 +141,7 @@ ul li:last-child {
   color: #7e7e7e;
 }
 .synonym .details .list {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }

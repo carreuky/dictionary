@@ -7,6 +7,7 @@ const wrapper = document.querySelector(".wrapper"),
   clearIcon=wrapper.querySelector('.search span')
 
 let audio;
+synonyms.innerHTML=""
 
 
 function fetchApi(word) {
@@ -35,7 +36,11 @@ const data= (result , input)=>{
    document.querySelector('.word p').innerText=wordFromAPI.charAt(0).toUpperCase() + wordFromAPI.slice(1)
    document.querySelector('.meaning span').innerText=def.definition
    document.querySelector('.example span').innerText=def.example ?? 'No example to illustrate'
-   document.querySelector('.synonym .list').innerText=result[0].meanings[0].synonyms.map(ele=>ele)
+  result[0].meanings[0].synonyms.map(ele=>{
+    let span=document.createElement('span')
+    synonyms.appendChild(span)
+    span.innerHTML=ele
+  });
   //  console.log(result[0])
 
  }
