@@ -7,7 +7,6 @@ const wrapper = document.querySelector(".wrapper"),
   clearIcon=wrapper.querySelector('.search span')
 
 let audio;
-synonyms.innerHTML=""
 
 
 function fetchApi(word) {
@@ -70,5 +69,6 @@ clearIcon.addEventListener('click',()=>{
 searchInput.addEventListener('keydown' , (e)=>{
   if (e.key === 'Enter') {
     fetchApi(searchInput.value)
+    synonyms.innerHTML=""
   }
 })
