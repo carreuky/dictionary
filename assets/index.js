@@ -16,10 +16,10 @@ function fetchApi(word) {
   let url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
   fetch(url)
     .then((res) => res.json())
-    .then((result) => data(result, searchInput.value))
+    .then((result) => 
+    data(result, searchInput.value))
     .catch(err=>console.log(err))
 }
-console.log(searchInput.value)
 
 const data= (result , input)=>{
  if(result.title){
@@ -30,6 +30,9 @@ const data= (result , input)=>{
    let wordFromAPI=result[0].word
    let def=result[0].meanings[0].definitions[0]
   //  console.log(result[0].phonetics[0].text)
+  if (result[0].phonetics[0].audio) {
+    audio = new Audio(result[0].phonetics[0].audio);
+  }
    phonetics=`Commonly pronounced as : ${result[0].phonetics[0].text}`
    document.querySelector('.word span').innerText=phonetics
    document.querySelector('.word p').innerText=wordFromAPI.charAt(0).toUpperCase() + wordFromAPI.slice(1)
@@ -54,6 +57,13 @@ clearIcon.addEventListener('click',()=>{
   synonyms, etc.`
 
 })
+volume.addEventListener("click", () => {
+  volume.style.color = "#4D59FB";
+  audio.play();
+  setTimeout(() => {
+    volume.style.color = "#999";
+  }, 500);
+});
 
 
 // function fetchApi(word) {
